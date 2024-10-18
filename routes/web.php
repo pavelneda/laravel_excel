@@ -24,11 +24,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+
+    Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
+    Route::get('/projects/import', [ProjectController::class, 'import'])->name('projects.import');
+    Route::post('/projects/import', [ProjectController::class, 'importStore'])->name('projects.import.store');
+    Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
+    Route::get('/tasks/{task}/failed_list', [TaskController::class, 'failedList'])->name('tasks.failed_list');
+
 });
 
-Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
-Route::get('/projects/import', [ProjectController::class, 'import'])->name('projects.import');
-Route::post('/projects/import', [ProjectController::class, 'importStore'])->name('projects.import.store');
-Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
-
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

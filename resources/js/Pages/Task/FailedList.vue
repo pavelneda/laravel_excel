@@ -1,20 +1,18 @@
 <script>
 import MainLayout from "@/Layouts/MainLayout.vue";
-import {Link} from "@inertiajs/vue3";
 
 export default {
-    name: "Index",
+    name: "FailedList",
 
     layout: MainLayout,
-    components: {Link},
 
-    props: ['tasks'],
+    props: ['failedList'],
 }
 </script>
 
 <template>
-    Task index
-    <div v-if="tasks" class="mt-4 -mb-3">
+    Failed List
+    <div v-if="failedList" class="mt-4 -mb-3">
         <div class="not-prose relative bg-slate-50 rounded-xl overflow-hidden dark:bg-slate-800/25">
             <div
                 class="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,#fff,rgba(255,255,255,0.6))] dark:bg-grid-slate-700/25 dark:[mask-image:linear-gradient(0deg,rgba(255,255,255,0.1),rgba(255,255,255,0.5))]"
@@ -25,32 +23,44 @@ export default {
                         <thead>
                         <tr>
                             <th class="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">
-                                User
+                                Id
                             </th>
                             <th class="border-b dark:border-slate-600 font-medium p-4 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">
-                                File
+                                Created at
                             </th>
                             <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">
-                                Status
+                                Key
                             </th>
                             <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">
-                                FailedRows
+                                Message
+                            </th>
+                            <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">
+                                Task id
+                            </th>
+                            <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">
+                                Row
                             </th>
                         </tr>
                         </thead>
                         <tbody class="bg-white dark:bg-slate-800">
-                        <tr v-for="task in tasks.data">
+                        <tr v-for="failedRow in failedList.data">
                             <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">
-                                {{ task.user.email }}
+                                {{ failedRow.id }}
                             </td>
-                            <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
-                                {{ task.file.title }}
+                            <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">
+                                {{ failedRow.created_at }}
                             </td>
-                            <td class="border-b border-slate-100 dark:border-slate-700 p-4 pr-8 text-slate-500 dark:text-slate-400">
-                                {{ task.status }}
+                            <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">
+                                {{ failedRow.key }}
                             </td>
-                            <td class="border-b border-slate-100 dark:border-slate-700 p-4 pr-8 text-slate-500 dark:text-slate-400">
-                                <Link v-if="task.failedRowsCount > 0" :href="route('tasks.failed_list', task.id)" class="text-sky-500">FailedRows</Link>
+                            <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">
+                                {{ failedRow.message }}
+                            </td>
+                            <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">
+                                {{ failedRow.task_id }}
+                            </td>
+                            <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">
+                                {{ failedRow.row }}
                             </td>
                         </tr>
                         </tbody>

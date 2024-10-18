@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
 /**
- * 
+ *
  *
  * @property int $id
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -37,12 +37,11 @@ class File extends Model
 
         $filePath = Storage::disk('public')->put('files', $dataFile);
 
-        File::create([
+         return File::create([
             'path' => $filePath,
             'mimo_type' => $dataFile->getClientOriginalExtension(),
             'title' => $dataFile->getClientOriginalName(),
         ]);
 
-        return $filePath;
     }
 }

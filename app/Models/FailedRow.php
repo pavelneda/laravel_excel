@@ -32,10 +32,12 @@ class FailedRow extends Model
     protected $table = 'failed_rows';
     protected $guarded = false;
 
-    public static function insertRows($items)
+    public static function insertRows($items, $task)
     {
         foreach ($items as $item) {
             self::create($item);
         }
+
+        $task->update(['status' => Task::STATUS_ERROR]);
     }
 }

@@ -10,7 +10,7 @@ export default {
 </script>
 
 <template>
-    <div class="w-96 mx-auto">
+    <div class="w-3/4 mx-auto">
         <Navigation/>
 
         <slot></slot>
