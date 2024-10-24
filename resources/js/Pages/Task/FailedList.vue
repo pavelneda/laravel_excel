@@ -1,8 +1,10 @@
 <script>
 import MainLayout from "@/Layouts/MainLayout.vue";
+import Pagination from "@/Components/Pagination.vue";
 
 export default {
     name: "FailedList",
+    components: {Pagination},
 
     layout: MainLayout,
 
@@ -67,8 +69,10 @@ export default {
                     </table>
                 </div>
             </div>
-            <div
-                class="absolute inset-0 pointer-events-none border border-black/5 rounded-xl dark:border-white/5"></div>
+            <div class="absolute inset-0 pointer-events-none border border-black/5 rounded-xl dark:border-white/5"></div>
+        </div>
+        <div>
+            <Pagination :meta="failedList.meta"></Pagination>
         </div>
     </div>
 </template>

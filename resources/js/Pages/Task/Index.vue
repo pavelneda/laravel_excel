@@ -1,12 +1,13 @@
 <script>
 import MainLayout from "@/Layouts/MainLayout.vue";
 import {Link} from "@inertiajs/vue3";
+import Pagination from "@/Components/Pagination.vue";
 
 export default {
     name: "Index",
 
     layout: MainLayout,
-    components: {Link},
+    components: {Link, Pagination},
 
     props: ['tasks'],
 }
@@ -50,15 +51,19 @@ export default {
                                 {{ task.status }}
                             </td>
                             <td class="border-b border-slate-100 dark:border-slate-700 p-4 pr-8 text-slate-500 dark:text-slate-400">
-                                <Link v-if="task.failedRowsCount > 0" :href="route('tasks.failed_list', task.id)" class="text-sky-500">FailedRows</Link>
+                                <Link v-if="task.failedRowsCount > 0" :href="route('tasks.failed_list', task.id)"
+                                      class="text-sky-500">FailedRows
+                                </Link>
                             </td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-            <div
-                class="absolute inset-0 pointer-events-none border border-black/5 rounded-xl dark:border-white/5"></div>
+            <div class="absolute inset-0 pointer-events-none border border-black/5 rounded-xl dark:border-white/5"></div>
+        </div>
+        <div>
+            <Pagination :meta="tasks.meta"></Pagination>
         </div>
     </div>
 </template>
