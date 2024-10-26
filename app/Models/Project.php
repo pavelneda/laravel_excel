@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * 
+ *
  *
  * @property int $id
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -59,4 +59,15 @@ class Project extends Model
 
     protected $table = 'projects';
     protected $guarded = false;
+    protected $casts = [
+        'date_of_create' => 'datetime',
+        'contracted_at' => 'datetime',
+        'deadline' => 'datetime',
+    ];
+
+
+    public function type(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Type::class, 'type_id', 'id');
+    }
 }
