@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Imports\ProjectDynamicImport;
 use App\Imports\ProjectImport;
 use App\Models\Task;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -33,6 +34,10 @@ class ImportProjectExcelJob implements ShouldQueue
     {
         $this->task->update(['status' => Task::STATUS_SUCCESS]);
 
-        Excel::import(new ProjectImport($this->task), $this->path, 'public');
+        if ($this->task->type === 1)
+            Excel::import(new ProjectImport($this->task), $this->path, 'public');
+        else
+            Excel::import(new ProjectDynamicImport($this->task), $this->path, 'public');
+
     }
 }

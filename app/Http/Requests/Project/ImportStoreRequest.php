@@ -22,7 +22,8 @@ class ImportStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'file' => 'required|file|mimes:xlsx,xls'
+            'file' => 'required|file',
+            'type' => 'required|integer|in:1,2',
         ];
     }
 }

@@ -29,6 +29,7 @@ class ProjectController extends Controller
         $task = Task::create([
             'file_id' => $file->id,
             'user_id' => auth()->id(),
+            'type' => $data['type'],
         ]);
 
         ImportProjectExcelJob::dispatchSync($file->path, $task);
